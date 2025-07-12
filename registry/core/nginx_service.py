@@ -68,7 +68,7 @@ class NginxConfigService:
             return fallback_dns
         
         logger.info("No EC2 public DNS available, using empty string")
-        return ""
+        return os.environ.get('NGROK_DNS', '')
 
     def generate_config(self, servers: Dict[str, Dict[str, Any]]) -> bool:
         """Generate Nginx configuration (synchronous version for non-async contexts)."""

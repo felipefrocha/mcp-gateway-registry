@@ -51,6 +51,24 @@ providers:
     email_claim: "email"
     name_claim: "name"
     enabled: false  # Disabled by default
+    
+  keycloak:
+    display_name: "Keycloak (Local)"
+    client_id: "${KEYCLOAK_CLIENT_ID}"
+    client_secret: "${KEYCLOAK_CLIENT_SECRET}"
+    auth_url: "http://localhost:8080/realms/${KEYCLOAK_REALM}/protocol/openid-connect/auth"
+    token_url: "http://localhost:8080/realms/${KEYCLOAK_REALM}/protocol/openid-connect/token"
+    user_info_url: "http://localhost:8080/realms/${KEYCLOAK_REALM}/protocol/openid-connect/userinfo"
+    logout_url: "http://localhost:8080/realms/${KEYCLOAK_REALM}/protocol/openid-connect/logout"
+    scopes: ["openid", "email", "profile"]
+    response_type: "code"
+    grant_type: "authorization_code"
+    # Keycloak specific claim mapping
+    username_claim: "preferred_username"
+    groups_claim: "groups"
+    email_claim: "email"
+    name_claim: "name"
+    enabled: false  # Disabled by default
 
 # Default session settings
 session:

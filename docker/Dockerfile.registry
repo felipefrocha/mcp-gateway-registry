@@ -2,7 +2,8 @@
 FROM python:3.12-slim
 
 ENV PYTHONUNBUFFERED=1 \
-    DEBIAN_FRONTEND=noninteractive
+    DEBIAN_FRONTEND=noninteractive \
+    UV_SYSTEM_PYTHON=true
 
 # Install system dependencies including nginx with lua module and Node.js
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -40,8 +41,6 @@ WORKDIR /app
 
 # Install uv and setup Python environment
 RUN pip install uv && \
-    uv venv .venv --python 3.12 && \
-    . .venv/bin/activate && \
     uv pip install \
     "fastapi>=0.115.12" \
     "itsdangerous>=2.2.0" \

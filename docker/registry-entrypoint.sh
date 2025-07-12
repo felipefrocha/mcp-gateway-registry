@@ -86,7 +86,7 @@ echo "Checking for sentence-transformers model..."
 if [ ! -d "$EMBEDDINGS_MODEL_DIR" ] || [ -z "$(ls -A "$EMBEDDINGS_MODEL_DIR")" ]; then
     echo "Downloading sentence-transformers model..."
     mkdir -p "$EMBEDDINGS_MODEL_DIR"
-    source "/app/.venv/bin/activate"
+    # source "/app/.venv/bin/activate"
     
     # Ensure CA certificates are installed for SSL verification
     echo "Ensuring CA certificates are installed..."
@@ -118,7 +118,7 @@ export EMBEDDINGS_MODEL_DIMENSIONS=384
 
 echo "Starting MCP Registry in the background..."
 cd /app
-source /app/.venv/bin/activate
+# source /app/.venv/bin/activate
 uvicorn registry.main:app --host 0.0.0.0 --port 7860 &
 echo "MCP Registry started."
 

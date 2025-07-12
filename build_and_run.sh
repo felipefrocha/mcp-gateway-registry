@@ -143,12 +143,12 @@ fi
 
 # Build the Docker images
 log "Building Docker images..."
-docker-compose build || handle_error "Docker Compose build failed"
+docker compose build || handle_error "Docker Compose build failed"
 log "Docker images built successfully"
 
 # Start the services
 log "Starting Docker Compose services..."
-docker-compose up -d || handle_error "Failed to start services"
+docker compose up -d || handle_error "Failed to start services"
 
 # Wait a moment for services to initialize
 log "Waiting for services to initialize..."
@@ -156,7 +156,7 @@ sleep 10
 
 # Check service status
 log "Checking service status..."
-docker-compose ps
+docker compose ps
 
 # Verify key services are running
 log "Verifying services are healthy..."
@@ -204,7 +204,7 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     log "Following container logs (press Ctrl+C to stop following logs without stopping the services):"
     echo "---------- DOCKER COMPOSE LOGS ----------"
-    docker-compose logs -f
+    docker compose logs -f
 else
     log "Services are running in the background. Use 'docker-compose logs -f' to view logs."
 fi
